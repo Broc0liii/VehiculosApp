@@ -1,4 +1,31 @@
 <?xml version="1.0" encoding="utf-8" ?>
+<!--
+Pseudocódigo / Plan detallado (en XAML comentado):
+
+1. Problema:
+   - Se usa `VerticalStackLayout` con `BoxView VerticalOptions="FillAndExpand"`.
+   - `FillAndExpand` está obsoleto para `StackLayout`; se recomienda usar `Grid`.
+   - También hay un error por un nombre de propiedad mal escrito (`VexrticalOptions`) en alguna parte.
+
+2. Solución aplicada en este archivo:
+   - Reemplazar cada `VerticalStackLayout` que actúa como columna izquierda (ícono + línea) por un `Grid`.
+   - Para las entradas que tienen línea vertical:
+     - `Grid` con `RowDefinitions="Auto, *"`.
+     - Colocar `Ellipse` en `Grid.Row="0"Contador`.
+     - Colocar `BoxView` en `Grid.Row="1"`, sin usar `FillAndExpand`. Usar `VerticalOptions="Fill"` o confiar en la fila con `*` para expandir.
+   - Para la entrada final que no tiene línea vertical:
+     - Usar un `Grid` con `RowDefinitions="Auto"` y sólo el `Ellipse`.
+   - Eliminar cualquier uso de `FillAndExpand` en este archivo.
+   - Asegurarse de que no existan typos como `VexrticalOptions` (usar `VerticalOptions` / `HorizontalOptions` correctamente).
+
+3. Resultado esperado:
+   - Se eliminan los avisos relacionados con `FillAndExpand` en este archivo.
+   - Se corrige el posible error de propiedad mal escrita en este archivo (si estaba aquí).
+   - Si el typo `VexrticalOptions` existe en otros archivos, hay que buscarlo y corregirlo en esos archivos también.
+
+-->
+
+
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VehiculosMaui.Views.HistorialMantenimientosPage"
@@ -9,10 +36,11 @@
 		<VerticalStackLayout Padding="20" Spacing="0">
 
 			<Grid ColumnDefinitions="Auto, *" ColumnSpacing="15" Padding="0,10">
-				<VerticalStackLayout Grid.Column="0" HorizontalOptions="Center">
-					<Ellipse WidthRequest="12" HeightRequest="12" Fill="#2196F3" />
-					<BoxView WidthRequest="2" VexrticalOptions="FillAndExpand" Color="#D1D1D1" HorizontalOptions="Center" />
-				</VerticalStackLayout>
+				<!-- Reemplazado VerticalStackLayout por Grid para evitar FillAndExpand -->
+				<Grid Grid.Column="0" HorizontalOptions="Center" RowDefinitions="Auto, *">
+					<Ellipse Grid.Row="0" WidthRequest="12" HeightRequest="12" Fill="#2196F3" HorizontalOptions="Center" />
+					<BoxView Grid.Row="1" WidthRequest="2" Color="#D1D1D1" HorizontalOptions="Center" VerticalOptions="Fill" />
+				</Grid>
 
 				<VerticalStackLayout Grid.Column="1" Spacing="2" Margin="0,0,0,20">
 					<Label Text="10 MAR 2022" FontSize="12" FontAttributes="Bold" TextColor="#757575" />
@@ -22,10 +50,10 @@
 			</Grid>
 
 			<Grid ColumnDefinitions="Auto, *" ColumnSpacing="15" Padding="0,10">
-				<VerticalStackLayout Grid.Column="0" HorizontalOptions="Center">
-					<Ellipse WidthRequest="12" HeightRequest="12" Fill="#2196F3" />
-					<BoxView WidthRequest="2" VerticalOptions="FillAndExpand" Color="#D1D1D1" HorizontalOptions="Center" />
-				</VerticalStackLayout>
+				<Grid Grid.Column="0" HorizontalOptions="Center" RowDefinitions="Auto, *">
+					<Ellipse Grid.Row="0" WidthRequest="12" HeightRequest="12" Fill="#2196F3" HorizontalOptions="Center" />
+					<BoxView Grid.Row="1" WidthRequest="2" Color="#D1D1D1" HorizontalOptions="Center" VerticalOptions="Fill" />
+				</Grid>
 
 				<VerticalStackLayout Grid.Column="1" Spacing="2" Margin="0,0,0,20">
 					<Label Text="02 FEB 2022" FontSize="12" FontAttributes="Bold" TextColor="#757575" />
@@ -35,9 +63,10 @@
 			</Grid>
 
 			<Grid ColumnDefinitions="Auto, *" ColumnSpacing="15" Padding="0,10">
-				<VerticalStackLayout Grid.Column="0" HorizontalOptions="Center">
-					<Ellipse WidthRequest="12" HeightRequest="12" Fill="#2196F3" />
-				</VerticalStackLayout>
+				<!-- Entrada sin línea extendida: sólo un Grid con fila Auto -->
+				<Grid Grid.Column="0" HorizontalOptions="Center" RowDefinitions="Auto">
+					<Ellipse Grid.Row="0" WidthRequest="12" HeightRequest="12" Fill="#2196F3" HorizontalOptions="Center" />
+				</Grid>
 
 				<VerticalStackLayout Grid.Column="1" Spacing="2">
 					<Label Text="15 NOV 2021" FontSize="12" FontAttributes="Bold" TextColor="#757575" />
