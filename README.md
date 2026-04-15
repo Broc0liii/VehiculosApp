@@ -1,66 +1,66 @@
 # VehiculosApp 🚗💨
 
-**VehiculosApp** es una solución moderna desarrollada con **.NET MAUI** diseñada para el control y gestión eficiente de flotas vehiculares. Permite administrar catálogos, registrar mantenimientos, reportar fallas y visualizar historiales de servicio con una interfaz de usuario optimizada y limpia.
+**VehiculosApp** is a modern solution developed with **.NET MAUI** designed for efficient vehicle fleet management and control. It allows users to manage catalogs, register maintenance tasks, report faults, and view service histories through a clean, optimized user interface.
 
 ---
 
-## ✨ Características Principales
+## ✨ Key Features
 
--   **Panel Principal (Dashboard):** Acceso rápido a todas las secciones mediante un diseño de mosaico intuitivo.
--   **Gestión de Inventario:** Visualización detallada de la flota con búsqueda por placas o modelo.
--   **Registro de Mantenimientos:** Formulario estructurado para capturar costos, kilometraje y tipos de servicio.
--   **Historial de Servicios:** Línea de tiempo (Timeline) para revisar intervenciones pasadas.
--   **Reporte de Incidencias:** Sistema de alertas para vehículos con fallas críticas o preventivas.
--   **Catálogos Dinámicos:** Administración de tipos de vehículos, servicios y estados.
+-   **Main Dashboard:** Quick access to all sections via an intuitive mosaic-style layout.
+-   **Inventory Management:** Detailed fleet visualization with search functionality by license plate or model.
+-   **Maintenance Logging:** Structured forms to capture costs, mileage, and service types.
+-   **Service History:** A visual Timeline to review past interventions and repairs.
+-   **Issue Reporting:** Alert system for vehicles with critical or preventive faults.
+-   **Dynamic Catalogs:** Administration of vehicle types, services, and statuses.
 
 ---
 
-## 🛠️ Tecnologías Utilizadas
+## 🛠️ Tech Stack
 
 -   **Framework:** [.NET MAUI](https://learn.microsoft.com/en-us/dotnet/maui/)
--   **Lenguaje:** C# / XAML
--   **Patrón de Diseño:** MVVM (Model-View-ViewModel)
--   **Estilos:** Diseño basado en Cards, sombras suaves y jerarquía visual moderna.
+-   **Language:** C# / XAML
+-   **Design Pattern:** MVVM (Model-View-ViewModel)
+-   **UI/UX:** Modern Card-based design, soft shadows, and clear visual hierarchy.
 
 ---
 
-## 📸 Vistas de la Aplicación
+## 📸 Application Views
 
-| Inicio | Lista de Vehículos | Registro de Mantenimiento |
+| Dashboard | Vehicle List | Maintenance Entry |
 | :---: | :---: | :---: |
-| Panel de control tipo mosaico | Listado con tarjetas y búsqueda | Formulario optimizado con sombras |
+| Mosaic control panel | Card-based list with search | Optimized form with depth |
 
-*(Nota: Puedes añadir capturas de pantalla en una carpeta `/Screenshots` y enlazarlas aquí)*
+*(Note: You can add screenshots to a `/Screenshots` folder and link them here)*
 
 ---
 
-## 🚀 Instalación y Uso
+## 🚀 Installation and Setup
 
-### Requisitos Previos
-* Visual Studio 2022 (con la carga de trabajo de .NET MAUI instalada).
-* SDK de .NET 7.0 o superior.
+### Prerequisites
+* Visual Studio 2022 (with the .NET MAUI workload installed).
+* .NET 7.0 SDK or higher.
 
-### Pasos para ejecutar
-1.  Clona este repositorio:
+### Steps to Run
+1.  Clone this repository:
     ```bash
     git clone [https://github.com/Broc0liii/VehiculosApp.git](https://github.com/Broc0liii/VehiculosApp.git)
     ```
-2.  Abre el archivo `VehiculosMaui.sln` en Visual Studio.
-3.  Restaura los paquetes NuGet.
-4.  Selecciona el emulador (Android/iOS) o Windows Machine y presiona **F5**.
+2.  Open the `VehiculosMaui.sln` file in Visual Studio.
+3.  Restore NuGet packages.
+4.  Select your target emulator (Android/iOS) or Windows Machine and press **F5**.
 
 ---
 
-## 📁 Estructura del Proyecto
+## 📁 Project Structure
 
 ```text
 VehiculosMaui/
-├── Views/                  # Archivos XAML (Interfaz de usuario)
+├── Views/                  # XAML Files (User Interface)
 │   ├── InicioPage.xaml
 │   ├── ListaVehiculosPage.xaml
 │   ├── DetalleVehiculoPage.xaml
 │   ├── RegistrarMantenimientoPage.xaml
 │   └── ...
-├── ViewModels/             # Lógica de las vistas
-├── Models/                 # Entidades de datos (Vehículo, Servicio, etc.)
-└── Resources/              # Estilos, Fuentes e Imágenes
+├── ViewModels/             # View logic and Data Binding
+├── Models/                 # Data entities (Vehicle, Service, etc.)
+└── Resources/              # Styles, Fonts, and Images
