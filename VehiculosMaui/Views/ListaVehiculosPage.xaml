@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VehiculosMaui.Views.ListaVehiculosPage"
+             Title="Flota de Vehículos"
+             BackgroundColor="#F8F9FA">
+
+	<Grid RowDefinitions="Auto, *">
+
+		<Border Grid.Row="0" BackgroundColor="White" StrokeThickness="0" Padding="15,10">
+			<SearchBar Placeholder="Filtrar por placa o modelo..."
+                       BackgroundColor="#F0F2F5"
+                       TextColor="#333333"
+                       PlaceholderColor="#999999"
+                       CancelButtonColor="#2196F3"
+                       HeightRequest="50"/>
+		</Border>
+
+		<ScrollView Grid.Row="1">
+			<VerticalStackLayout Padding="20" Spacing="12">
+
+				<Border StrokeShape="RoundRectangle 12"
+                        StrokeThickness="0"
+                        BackgroundColor="White"
+                        Padding="16">
+					<Border.Shadow>
+						<Shadow Brush="Black" Offset="0,2" Opacity="0.05" Radius="3"/>
+					</Border.Shadow>
+
+					<Grid ColumnDefinitions="*, Auto" VerticalOptions="Center">
+						<VerticalStackLayout Grid.Column="0" Spacing="2">
+							<Label Text="ABC-123" FontSize="18" FontAttributes="Bold" TextColor="#2196F3" />
+							<Label Text="Nissan Sentra" FontSize="14" TextColor="#666666" />
+						</VerticalStackLayout>
+
+						<Label Grid.Column="1"
+                               Text="VER >"
+                               VerticalOptions="Center"
+                               FontSize="12"
+                               FontAttributes="Bold"
+                               TextColor="#999999"
+                               Margin="0,0,5,0"/>
+					</Grid>
+				</Border>
+
+				<Border StrokeShape="RoundRectangle 12"
+                        StrokeThickness="0"
+                        BackgroundColor="White"
+                        Padding="16">
+					<Border.Shadow>
+						<Shadow Brush="Black" Offset="0,2" Opacity="0.05" Radius="3"/>
+						</Border.Shadow>
+
+						<Grid ColumnDefinitions="*, Auto" VerticalOptions="Center">
+							<VerticalStackLayout Grid.Column="0" Spacing="2">
+								<Label Text="XY-2456" FontSize="18" FontAttributes="Bold" TextColor="#2196F3" />
+								<Label Text="Ford F-150 · 2018" FontSize="14" TextColor="#666666" />
+							</VerticalStackLayout>
+
+							<Label Grid.Column="1"
+								   Text="VER >"
+								   VerticalOptions="Center"
+								   FontSize="12"
+								   FontAttributes="Bold"
+								   TextColor="#999999"
+								   Margin="0,0,5,0"/>
+						</Grid>
+					</Border>
+
+			</VerticalStackLayout>
+		</ScrollView>
+	</Grid>
+
+</ContentPage>

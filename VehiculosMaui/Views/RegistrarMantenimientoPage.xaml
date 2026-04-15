@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VehiculosMaui.Views.RegistrarMantenimientoPage"
+             Title="Nuevo Registro"
+             BackgroundColor="#F5F6FA">
+
+	<ScrollView>
+		<VerticalStackLayout Padding="25" Spacing="20">
+
+			<VerticalStackLayout Spacing="5" HorizontalOptions="Start" Margin="0,10">
+				<Label Text="Detalles del Servicio" FontSize="22" FontAttributes="Bold" TextColor="#212121" />
+				<Label Text="Complete la información del mantenimiento realizado." FontSize="14" TextColor="#757575" />
+			</VerticalStackLayout>
+
+			<Border StrokeShape="RoundRectangle 15" StrokeThickness="0" BackgroundColor="White" Padding="20">
+				<Border.Shadow>
+					<Shadow Brush="Black" Offset="0,2" Opacity="0.05" Radius="10"/>
+				</Border.Shadow>
+
+				<VerticalStackLayout Spacing="18">
+
+					<VerticalStackLayout Spacing="5">
+						<Label Text="FECHA DEL SERVICIO" FontSize="11" FontAttributes="Bold" TextColor="#2196F3" CharacterSpacing="1"/>
+						<DatePicker Format="dd/MM/yyyy" TextColor="#333333" MinimumDate="01/01/2020" />
+						<BoxView HeightRequest="1" Color="#EEEEEE" />
+					</VerticalStackLayout>
+
+					<VerticalStackLayout Spacing="5">
+						<Label Text="TIPO DE SERVICIO" FontSize="11" FontAttributes="Bold" TextColor="#2196F3" CharacterSpacing="1"/>
+						<Picker Title="Seleccione una opción..." TitleColor="#999999" TextColor="#333333">
+							<Picker.ItemsSource>
+								<x:Array Type="{x:Type x:String}">
+									<x:String>Cambio de Aceite</x:String>
+									<x:String>Revisión de Frenos</x:String>
+									<x:String>Alineación y Balanceo</x:String>
+									<x:String>Afinación Mayor</x:String>
+								</x:Array>
+							</Picker.ItemsSource>
+						</Picker>
+						<BoxView HeightRequest="1" Color="#EEEEEE" />
+					</VerticalStackLayout>
+
+					<Grid ColumnDefinitions="*, *" ColumnSpacing="15">
+						<VerticalStackLayout Grid.Column="0" Spacing="5">
+							<Label Text="COSTO ($)" FontSize="11" FontAttributes="Bold" TextColor="#2196F3" CharacterSpacing="1"/>
+							<Entry Placeholder="0.00" Keyboard="Numeric" ClearButtonVisibility="WhileEditing" />
+							<BoxView HeightRequest="1" Color="#EEEEEE" />
+						</VerticalStackLayout>
+
+						<VerticalStackLayout Grid.Column="1" Spacing="5">
+							<Label Text="KM ACTUAL" FontSize="11" FontAttributes="Bold" TextColor="#2196F3" CharacterSpacing="1"/>
+							<Entry Placeholder="0" Keyboard="Numeric" ClearButtonVisibility="WhileEditing" />
+							<BoxView HeightRequest="1" Color="#EEEEEE" />
+						</VerticalStackLayout>
+					</Grid>
+
+				</VerticalStackLayout>
+			</Border>
+
+			<Button Text="Guardar Registro"
+                    HeightRequest="60"
+                    BackgroundColor="#4CAF50"
+                    TextColor="White"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    CornerRadius="12"
+                    Margin="0,10,0,30">
+				<Button.Shadow>
+					<Shadow Brush="#4CAF50" Offset="0,4" Opacity="0.3" Radius="8"/>
+				</Button.Shadow>
+			</Button>
+
+		</VerticalStackLayout>
+	</ScrollView>
+</ContentPage>

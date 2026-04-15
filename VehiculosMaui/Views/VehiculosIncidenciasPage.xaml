@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VehiculosMaui.Views.VehiculosIncidenciasPage"
+             Title="Incidencias"
+             BackgroundColor="#FDFDFD">
+
+	<Grid RowDefinitions="*, Auto">
+		<ScrollView Grid.Row="0">
+			<VerticalStackLayout Padding="20" Spacing="15">
+
+				<Label Text="Unidades con reportes activos"
+                       FontSize="14"
+                       TextColor="#666666"
+                       Margin="5,0,0,5"/>
+
+				<Border StrokeShape="RoundRectangle 12"
+                        StrokeThickness="0"
+                        BackgroundColor="White"
+                        Padding="0">
+					<Border.Shadow>
+						<Shadow Brush="Black" Offset="0,2" Opacity="0.1" Radius="5"/>
+					</Border.Shadow>
+
+					<Grid ColumnDefinitions="6, *">
+						<BoxView Grid.Column="0" BackgroundColor="#D32F2F" />
+						<VerticalStackLayout Grid.Column="1" Padding="15" Spacing="4">
+							<Label Text="ABC123 - Nissan Sentra" FontAttributes="Bold" FontSize="16" TextColor="#212121"/>
+							<HorizontalStackLayout Spacing="5">
+								<Label Text="●" TextColor="#D32F2F" VerticalOptions="Center"/>
+								<Label Text="5 Fallas reportadas" FontSize="14" TextColor="#D32F2F" FontAttributes="Bold"/>
+							</HorizontalStackLayout>
+						</VerticalStackLayout>
+					</Grid>
+				</Border>
+
+				<Border StrokeShape="RoundRectangle 12"
+                        StrokeThickness="0"
+                        BackgroundColor="White"
+                        Padding="0">
+					<Border.Shadow>
+						<Shadow Brush="Black" Offset="0,2" Opacity="0.1" Radius="5"/>
+					</Border.Shadow>
+
+					<Grid ColumnDefinitions="6, *">
+						<BoxView Grid.Column="0" BackgroundColor="#FBC02D" />
+						<VerticalStackLayout Grid.Column="1" Padding="15" Spacing="4">
+							<Label Text="XY2456 - Ford F-150" FontAttributes="Bold" FontSize="16" TextColor="#212121"/>
+							<HorizontalStackLayout Spacing="5">
+								<Label Text="●" TextColor="#FBC02D" VerticalOptions="Center"/>
+								<Label Text="3 Fallas reportadas" FontSize="14" TextColor="#7F6000" FontAttributes="Bold"/>
+							</HorizontalStackLayout>
+						</VerticalStackLayout>
+					</Grid>
+				</Border>
+
+			</VerticalStackLayout>
+		</ScrollView>
+
+		<Border Grid.Row="1" Padding="20" BackgroundColor="White" StrokeThickness="0">
+			<Button Text="Ver Reporte Detallado"
+                    HeightRequest="55"
+                    CornerRadius="12"
+                    BackgroundColor="#2196F3"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    FontSize="16">
+				<Button.Shadow>
+					<Shadow Brush="#2196F3" Offset="0,4" Opacity="0.3" Radius="8"/>
+				</Button.Shadow>
+			</Button>
+		</Border>
+	</Grid>
+
+</ContentPage>

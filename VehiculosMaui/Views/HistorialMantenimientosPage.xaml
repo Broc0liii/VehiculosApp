@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VehiculosMaui.Views.HistorialMantenimientosPage"
+             Title="Historial"
+             BackgroundColor="#F5F5F5">
+
+	<ScrollView>
+		<VerticalStackLayout Padding="20" Spacing="0">
+
+			<Grid ColumnDefinitions="Auto, *" ColumnSpacing="15" Padding="0,10">
+				<VerticalStackLayout Grid.Column="0" HorizontalOptions="Center">
+					<Ellipse WidthRequest="12" HeightRequest="12" Fill="#2196F3" />
+					<BoxView WidthRequest="2" VexrticalOptions="FillAndExpand" Color="#D1D1D1" HorizontalOptions="Center" />
+				</VerticalStackLayout>
+
+				<VerticalStackLayout Grid.Column="1" Spacing="2" Margin="0,0,0,20">
+					<Label Text="10 MAR 2022" FontSize="12" FontAttributes="Bold" TextColor="#757575" />
+					<Label Text="Cambio de Aceite" FontSize="17" TextColor="#212121" FontAttributes="Bold" />
+					<Label Text="$500.00" FontSize="15" TextColor="#2E7D32" FontAttributes="Bold" />
+				</VerticalStackLayout>
+			</Grid>
+
+			<Grid ColumnDefinitions="Auto, *" ColumnSpacing="15" Padding="0,10">
+				<VerticalStackLayout Grid.Column="0" HorizontalOptions="Center">
+					<Ellipse WidthRequest="12" HeightRequest="12" Fill="#2196F3" />
+					<BoxView WidthRequest="2" VerticalOptions="FillAndExpand" Color="#D1D1D1" HorizontalOptions="Center" />
+				</VerticalStackLayout>
+
+				<VerticalStackLayout Grid.Column="1" Spacing="2" Margin="0,0,0,20">
+					<Label Text="02 FEB 2022" FontSize="12" FontAttributes="Bold" TextColor="#757575" />
+					<Label Text="Revisión de Frenos" FontSize="17" TextColor="#212121" FontAttributes="Bold" />
+					<Label Text="$1,200.00" FontSize="15" TextColor="#2E7D32" FontAttributes="Bold" />
+				</VerticalStackLayout>
+			</Grid>
+
+			<Grid ColumnDefinitions="Auto, *" ColumnSpacing="15" Padding="0,10">
+				<VerticalStackLayout Grid.Column="0" HorizontalOptions="Center">
+					<Ellipse WidthRequest="12" HeightRequest="12" Fill="#2196F3" />
+				</VerticalStackLayout>
+
+				<VerticalStackLayout Grid.Column="1" Spacing="2">
+					<Label Text="15 NOV 2021" FontSize="12" FontAttributes="Bold" TextColor="#757575" />
+					<Label Text="Alineación y Balanceo" FontSize="17" TextColor="#212121" FontAttributes="Bold" />
+					<Label Text="$800.00" FontSize="15" TextColor="#2E7D32" FontAttributes="Bold" />
+				</VerticalStackLayout>
+			</Grid>
+
+		</VerticalStackLayout>
+	</ScrollView>
+</ContentPage>
