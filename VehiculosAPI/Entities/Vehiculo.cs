@@ -1,4 +1,4 @@
-﻿using VehiculosAPI.Entities.Catalogos;
+using VehiculosAPI.Entities.Catalogos;
 
 namespace VehiculosAPI.Entities
 {
@@ -16,5 +16,8 @@ namespace VehiculosAPI.Entities
 		public string Year { get; set; }
 
 		public string Placas { get; set; }
+
+        public ICollection<Mantenimiento>? Mantenimientos { get; set; }
+        public ICollection<Falla>? Fallas { get; set; }
 	}
 }

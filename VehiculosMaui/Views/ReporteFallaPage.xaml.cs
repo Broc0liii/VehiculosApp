@@ -1,9 +1,14 @@
-namespace VehiculosMaui.Views;
+using Microsoft.Maui.Controls;
+using VehiculosMaui.ViewModels;
 
-public partial class ReporteFallaPage : ContentPage
+namespace VehiculosMaui.Views
 {
-	public ReporteFallaPage()
-	{
-		InitializeComponent();
-	}
+    public partial class ReporteFallaPage : ContentPage
+    {
+        public ReporteFallaPage(FallasViewModel viewModel)
+        {
+            InitializeComponent();
+            BindingContext = viewModel;
+        }
+    }
 }

@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using VehiculosAPI.Entities;
 using VehiculosAPI.Entities.Catalogos;
 
@@ -17,5 +17,9 @@ namespace VehiculosAPI.Data
 
         public DbSet<CatMarca> CatMarcas { get; set; }
         public DbSet<Vehiculo> Vehiculos { get; set; }
+        public DbSet<Mantenimiento> Mantenimientos { get; set; }
+        public DbSet<Falla> Fallas { get; set; }
+        public DbSet<CatServicio> CatServicios { get; set; }
+        public DbSet<CatEstatusFalla> CatEstatusFallas { get; set; }
     }
 }

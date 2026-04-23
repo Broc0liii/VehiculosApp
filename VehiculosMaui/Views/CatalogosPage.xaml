@@ -2,71 +2,64 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VehiculosMaui.Views.CatalogosPage"
-             Title="Gestión de Catálogos"
-             BackgroundColor="#F5F5F5">
-	<ScrollView>
-		<VerticalStackLayout Padding="25" Spacing="20" VerticalOptions="Start">
+             Title="Catálogos"
+             BackgroundColor="{StaticResource Background}">
 
-			<Label Text="Seleccione una categoría para administrar:"
-                   FontSize="16"
-                   TextColor="#666666"
-                   Margin="0,10,0,10"
-                   HorizontalOptions="Center"/>
+    <Grid RowDefinitions="Auto, *">
+        <VerticalStackLayout Grid.Row="0" Padding="25" Spacing="10">
+            <Label Text="Catálogos del Sistema" FontSize="24" FontAttributes="Bold" TextColor="{StaticResource PrimaryDark}" />
+            <Label Text="Información base para operaciones." FontSize="14" TextColor="{StaticResource Tertiary}" />
+        </VerticalStackLayout>
 
-			<Button Text="Tipos de Vehículo"
-                    HeightRequest="70"
-                    FontSize="18"
-                    CornerRadius="12"
-                    TextColor="White"
-                    FontAttributes="Bold"
-                    CharacterSpacing="1">
-				<Button.Background>
-					<LinearGradientBrush EndPoint="1,0">
-						<GradientStop Color="#1976D2" Offset="0.1" />
-						<GradientStop Color="#2196F3" Offset="1.0" />
-					</LinearGradientBrush>
-				</Button.Background>
-				<Button.Shadow>
-					<Shadow Brush="Black" Offset="0,4" Radius="5" Opacity="0.1" />
-				</Button.Shadow>
-			</Button>
+        <RefreshView Grid.Row="1" Command="{Binding LoadDataCommand}" IsRefreshing="{Binding IsBusy}">
+            <ScrollView>
+                <VerticalStackLayout Padding="20" Spacing="25">
+                    
+                    <!-- Marcas -->
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="Marcas de Vehículos" FontSize="18" FontAttributes="Bold" TextColor="{StaticResource Primary}" />
+                        <CollectionView ItemsSource="{Binding Marcas}">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Border StrokeShape="RoundRectangle 10" StrokeThickness="0" BackgroundColor="{StaticResource CardBackground}" Margin="0,0,0,10" Padding="15">
+                                        <Label Text="{Binding Nombre}" TextColor="{StaticResource PrimaryDarkText}" FontSize="14" />
+                                    </Border>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </VerticalStackLayout>
 
-			<Button Text="Tipos de Servicio"
-                    HeightRequest="70"
-                    FontSize="18"
-                    CornerRadius="12"
-                    TextColor="White"
-                    FontAttributes="Bold"
-                    CharacterSpacing="1">
-				<Button.Background>
-					<LinearGradientBrush EndPoint="1,0">
-						<GradientStop Color="#1976D2" Offset="0.1" />
-						<GradientStop Color="#2196F3" Offset="1.0" />
-					</LinearGradientBrush>
-				</Button.Background>
-				<Button.Shadow>
-					<Shadow Brush="Black" Offset="0,4" Radius="5" Opacity="0.1" />
-				</Button.Shadow>
-			</Button>
+                    <!-- Servicios -->
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="Tipos de Servicios" FontSize="18" FontAttributes="Bold" TextColor="{StaticResource Primary}" />
+                        <CollectionView ItemsSource="{Binding Servicios}">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Border StrokeShape="RoundRectangle 10" StrokeThickness="0" BackgroundColor="{StaticResource CardBackground}" Margin="0,0,0,10" Padding="15">
+                                        <Label Text="{Binding Nombre}" TextColor="{StaticResource PrimaryDarkText}" FontSize="14" />
+                                    </Border>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </VerticalStackLayout>
 
-			<Button Text="Estados del Vehículo"
-                    HeightRequest="70"
-                    FontSize="18"
-                    CornerRadius="12"
-                    TextColor="White"
-                    FontAttributes="Bold"
-                    CharacterSpacing="1">
-				<Button.Background>
-					<LinearGradientBrush EndPoint="1,0">
-						<GradientStop Color="#1976D2" Offset="0.1" />
-						<GradientStop Color="#2196F3" Offset="1.0" />
-					</LinearGradientBrush>
-				</Button.Background>
-				<Button.Shadow>
-					<Shadow Brush="Black" Offset="0,4" Radius="5" Opacity="0.1" />
-				</Button.Shadow>
-			</Button>
+                    <!-- Estatus Fallas -->
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="Estatus de Fallas" FontSize="18" FontAttributes="Bold" TextColor="{StaticResource Primary}" />
+                        <CollectionView ItemsSource="{Binding EstatusFallas}">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Border StrokeShape="RoundRectangle 10" StrokeThickness="0" BackgroundColor="{StaticResource CardBackground}" Margin="0,0,0,10" Padding="15">
+                                        <Label Text="{Binding Nombre}" TextColor="{StaticResource PrimaryDarkText}" FontSize="14" />
+                                    </Border>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </VerticalStackLayout>
 
-		</VerticalStackLayout>
-	</ScrollView>
+                </VerticalStackLayout>
+            </ScrollView>
+        </RefreshView>
+    </Grid>
+
 </ContentPage>

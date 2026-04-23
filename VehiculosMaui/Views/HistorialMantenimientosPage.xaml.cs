@@ -1,9 +1,23 @@
-namespace VehiculosMaui.Views;
+using Microsoft.Maui.Controls;
+using VehiculosMaui.ViewModels;
 
-public partial class HistorialMantenimientosPage : ContentPage
+namespace VehiculosMaui.Views
 {
-	public HistorialMantenimientosPage()
-	{
-		InitializeComponent();
-	}
+    public partial class HistorialMantenimientosPage : ContentPage
+    {
+        public HistorialMantenimientosPage(MantenimientoViewModel viewModel)
+        {
+            InitializeComponent();
+            BindingContext = viewModel;
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            if (BindingContext is MantenimientoViewModel vm)
+            {
+                vm.LoadMantenimientosCommand.Execute(null);
+            }
+        }
+    }
 }

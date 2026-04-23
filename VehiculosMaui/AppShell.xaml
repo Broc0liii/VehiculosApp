@@ -8,7 +8,7 @@
 
 	<ShellContent
         Title="Inicio"
-        ContentTemplate="{DataTemplate views:HistorialMantenimientosPage}"
+        ContentTemplate="{DataTemplate views:InicioPage}"
         Route="InicioPage" />
 
 </Shell> 

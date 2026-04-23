@@ -1,9 +1,23 @@
-namespace VehiculosMaui.Views;
+using Microsoft.Maui.Controls;
+using VehiculosMaui.ViewModels;
 
-public partial class VehiculosIncidenciasPage : ContentPage
+namespace VehiculosMaui.Views
 {
-	public VehiculosIncidenciasPage()
-	{
-		InitializeComponent();
-	}
+    public partial class VehiculosIncidenciasPage : ContentPage
+    {
+        public VehiculosIncidenciasPage(FallasViewModel viewModel)
+        {
+            InitializeComponent();
+            BindingContext = viewModel;
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            if (BindingContext is FallasViewModel vm)
+            {
+                vm.LoadFallasCommand.Execute(null);
+            }
+        }
+    }
 }

@@ -2,74 +2,57 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VehiculosMaui.Views.VehiculosIncidenciasPage"
-             Title="Incidencias"
-             BackgroundColor="#FDFDFD">
+             Title="Fallas e Incidencias"
+             BackgroundColor="{StaticResource Background}">
 
-	<Grid RowDefinitions="*, Auto">
-		<ScrollView Grid.Row="0">
-			<VerticalStackLayout Padding="20" Spacing="15">
+    <Grid RowDefinitions="Auto, *">
+        <VerticalStackLayout Grid.Row="0" Padding="25" Spacing="10">
+            <Label Text="Reporte de Fallas" FontSize="22" FontAttributes="Bold" TextColor="{StaticResource PrimaryDark}" />
+            <Label Text="Visualiza las incidencias registradas en los vehículos." FontSize="14" TextColor="{StaticResource Tertiary}" />
 
-				<Label Text="Unidades con reportes activos"
-                       FontSize="14"
-                       TextColor="#666666"
-                       Margin="5,0,0,5"/>
-
-				<Border StrokeShape="RoundRectangle 12"
-                        StrokeThickness="0"
-                        BackgroundColor="White"
-                        Padding="0">
-					<Border.Shadow>
-						<Shadow Brush="Black" Offset="0,2" Opacity="0.1" Radius="5"/>
-					</Border.Shadow>
-
-					<Grid ColumnDefinitions="6, *">
-						<BoxView Grid.Column="0" BackgroundColor="#D32F2F" />
-						<VerticalStackLayout Grid.Column="1" Padding="15" Spacing="4">
-							<Label Text="ABC123 - Nissan Sentra" FontAttributes="Bold" FontSize="16" TextColor="#212121"/>
-							<HorizontalStackLayout Spacing="5">
-								<Label Text="●" TextColor="#D32F2F" VerticalOptions="Center"/>
-								<Label Text="5 Fallas reportadas" FontSize="14" TextColor="#D32F2F" FontAttributes="Bold"/>
-							</HorizontalStackLayout>
-						</VerticalStackLayout>
-					</Grid>
-				</Border>
-
-				<Border StrokeShape="RoundRectangle 12"
-                        StrokeThickness="0"
-                        BackgroundColor="White"
-                        Padding="0">
-					<Border.Shadow>
-						<Shadow Brush="Black" Offset="0,2" Opacity="0.1" Radius="5"/>
-					</Border.Shadow>
-
-					<Grid ColumnDefinitions="6, *">
-						<BoxView Grid.Column="0" BackgroundColor="#FBC02D" />
-						<VerticalStackLayout Grid.Column="1" Padding="15" Spacing="4">
-							<Label Text="XY2456 - Ford F-150" FontAttributes="Bold" FontSize="16" TextColor="#212121"/>
-							<HorizontalStackLayout Spacing="5">
-								<Label Text="●" TextColor="#FBC02D" VerticalOptions="Center"/>
-								<Label Text="3 Fallas reportadas" FontSize="14" TextColor="#7F6000" FontAttributes="Bold"/>
-							</HorizontalStackLayout>
-						</VerticalStackLayout>
-					</Grid>
-				</Border>
-
-			</VerticalStackLayout>
-		</ScrollView>
-
-		<Border Grid.Row="1" Padding="20" BackgroundColor="White" StrokeThickness="0">
-			<Button Text="Ver Reporte Detallado"
-                    HeightRequest="55"
-                    CornerRadius="12"
-                    BackgroundColor="#2196F3"
+            <Button Text="+ Reportar Falla"
+                    Command="{Binding ReportarFallaCommand}"
+                    BackgroundColor="{StaticResource Primary}"
                     TextColor="White"
-                    FontAttributes="Bold"
-                    FontSize="16">
-				<Button.Shadow>
-					<Shadow Brush="#2196F3" Offset="0,4" Opacity="0.3" Radius="8"/>
-				</Button.Shadow>
-			</Button>
-		</Border>
-	</Grid>
+                    CornerRadius="20"
+                    HeightRequest="50"
+                    Margin="0,15,0,0">
+                <Button.Shadow>
+                    <Shadow Brush="{StaticResource Primary}" Offset="0,4" Opacity="0.2" Radius="8"/>
+                </Button.Shadow>
+            </Button>
+        </VerticalStackLayout>
+
+        <RefreshView Grid.Row="1" Command="{Binding LoadFallasCommand}" IsRefreshing="{Binding IsBusy}">
+            <CollectionView ItemsSource="{Binding Fallas}" Margin="20,0,20,20">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border StrokeShape="RoundRectangle 15" StrokeThickness="0" BackgroundColor="{StaticResource CardBackground}" Margin="0,0,0,15" Padding="20">
+                            <Border.Shadow>
+                                <Shadow Brush="{StaticResource Primary}" Offset="0,4" Opacity="0.1" Radius="10"/>
+                            </Border.Shadow>
+
+                            <Grid ColumnDefinitions="Auto, *" RowDefinitions="Auto, Auto">
+                                <BoxView Grid.RowSpan="2" Grid.Column="0" WidthRequest="4" BackgroundColor="{StaticResource Primary}" CornerRadius="2" Margin="0,0,15,0" />
+                                
+                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding VehiculoId, StringFormat='Vehículo ID: {0}'}" FontSize="16" FontAttributes="Bold" TextColor="{StaticResource PrimaryDark}" />
+                                
+                                <VerticalStackLayout Grid.Row="1" Grid.Column="1" Spacing="5" Margin="0,5,0,0">
+                                    <Label Text="{Binding Descripcion}" FontSize="14" TextColor="{StaticResource Tertiary}" />
+                                    <Label Text="{Binding EstatusFallaId, StringFormat='Estatus: {0}'}" FontSize="14" FontAttributes="Italic" TextColor="{StaticResource PrimaryDark}" />
+                                    <Label Text="{Binding FechaReporte, StringFormat='Reportado: {0:dd/MM/yyyy}'}" FontSize="12" TextColor="{StaticResource Tertiary}" />
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.EmptyView>
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10" Margin="0,50,0,0">
+                        <Label Text="No hay fallas reportadas." FontSize="16" TextColor="{StaticResource Tertiary}" HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+                </CollectionView.EmptyView>
+            </CollectionView>
+        </RefreshView>
+    </Grid>
 
 </ContentPage>

@@ -1,9 +1,14 @@
-namespace VehiculosMaui.Views;
+using Microsoft.Maui.Controls;
+using VehiculosMaui.ViewModels;
 
-public partial class RegistrarMantenimientoPage : ContentPage
+namespace VehiculosMaui.Views
 {
-	public RegistrarMantenimientoPage()
-	{
-		InitializeComponent();
-	}
+    public partial class RegistrarMantenimientoPage : ContentPage
+    {
+        public RegistrarMantenimientoPage(MantenimientoViewModel viewModel)
+        {
+            InitializeComponent();
+            BindingContext = viewModel;
+        }
+    }
 }

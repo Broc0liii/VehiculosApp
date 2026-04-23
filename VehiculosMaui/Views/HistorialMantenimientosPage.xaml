@@ -1,80 +1,58 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<!--
-Pseudocódigo / Plan detallado (en XAML comentado):
-
-1. Problema:
-   - Se usa `VerticalStackLayout` con `BoxView VerticalOptions="FillAndExpand"`.
-   - `FillAndExpand` está obsoleto para `StackLayout`; se recomienda usar `Grid`.
-   - También hay un error por un nombre de propiedad mal escrito (`VexrticalOptions`) en alguna parte.
-
-2. Solución aplicada en este archivo:
-   - Reemplazar cada `VerticalStackLayout` que actúa como columna izquierda (ícono + línea) por un `Grid`.
-   - Para las entradas que tienen línea vertical:
-     - `Grid` con `RowDefinitions="Auto, *"`.
-     - Colocar `Ellipse` en `Grid.Row="0"Contador`.
-     - Colocar `BoxView` en `Grid.Row="1"`, sin usar `FillAndExpand`. Usar `VerticalOptions="Fill"` o confiar en la fila con `*` para expandir.
-   - Para la entrada final que no tiene línea vertical:
-     - Usar un `Grid` con `RowDefinitions="Auto"` y sólo el `Ellipse`.
-   - Eliminar cualquier uso de `FillAndExpand` en este archivo.
-   - Asegurarse de que no existan typos como `VexrticalOptions` (usar `VerticalOptions` / `HorizontalOptions` correctamente).
-
-3. Resultado esperado:
-   - Se eliminan los avisos relacionados con `FillAndExpand` en este archivo.
-   - Se corrige el posible error de propiedad mal escrita en este archivo (si estaba aquí).
-   - Si el typo `VexrticalOptions` existe en otros archivos, hay que buscarlo y corregirlo en esos archivos también.
-
--->
-
-
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VehiculosMaui.Views.HistorialMantenimientosPage"
-             Title="Historial"
-             BackgroundColor="#F5F5F5">
+             Title="Mantenimientos"
+             BackgroundColor="{StaticResource Background}">
 
-	<ScrollView>
-		<VerticalStackLayout Padding="20" Spacing="0">
+    <Grid RowDefinitions="Auto, *">
+        <VerticalStackLayout Grid.Row="0" Padding="25" Spacing="10">
+            <Label Text="Historial de Mantenimientos" FontSize="22" FontAttributes="Bold" TextColor="{StaticResource PrimaryDark}" />
+            <Label Text="Registro de servicios realizados a la flota." FontSize="14" TextColor="{StaticResource Tertiary}" />
 
-			<Grid ColumnDefinitions="Auto, *" ColumnSpacing="15" Padding="0,10">
-				<!-- Reemplazado VerticalStackLayout por Grid para evitar FillAndExpand -->
-				<Grid Grid.Column="0" HorizontalOptions="Center" RowDefinitions="Auto, *">
-					<Ellipse Grid.Row="0" WidthRequest="12" HeightRequest="12" Fill="#2196F3" HorizontalOptions="Center" />
-					<BoxView Grid.Row="1" WidthRequest="2" Color="#D1D1D1" HorizontalOptions="Center" VerticalOptions="Fill" />
-				</Grid>
+            <Button Text="+ Nuevo Mantenimiento"
+                    Command="{Binding NuevoMantenimientoCommand}"
+                    BackgroundColor="{StaticResource Primary}"
+                    TextColor="White"
+                    CornerRadius="20"
+                    HeightRequest="50"
+                    Margin="0,15,0,0">
+                <Button.Shadow>
+                    <Shadow Brush="{StaticResource Primary}" Offset="0,4" Opacity="0.2" Radius="8"/>
+                </Button.Shadow>
+            </Button>
+        </VerticalStackLayout>
 
-				<VerticalStackLayout Grid.Column="1" Spacing="2" Margin="0,0,0,20">
-					<Label Text="10 MAR 2022" FontSize="12" FontAttributes="Bold" TextColor="#757575" />
-					<Label Text="Cambio de Aceite" FontSize="17" TextColor="#212121" FontAttributes="Bold" />
-					<Label Text="$500.00" FontSize="15" TextColor="#2E7D32" FontAttributes="Bold" />
-				</VerticalStackLayout>
-			</Grid>
+        <RefreshView Grid.Row="1" Command="{Binding LoadMantenimientosCommand}" IsRefreshing="{Binding IsBusy}">
+            <CollectionView ItemsSource="{Binding Mantenimientos}" Margin="20,0,20,20">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border StrokeShape="RoundRectangle 15" StrokeThickness="0" BackgroundColor="{StaticResource CardBackground}" Margin="0,0,0,15" Padding="20">
+                            <Border.Shadow>
+                                <Shadow Brush="{StaticResource Primary}" Offset="0,4" Opacity="0.1" Radius="10"/>
+                            </Border.Shadow>
 
-			<Grid ColumnDefinitions="Auto, *" ColumnSpacing="15" Padding="0,10">
-				<Grid Grid.Column="0" HorizontalOptions="Center" RowDefinitions="Auto, *">
-					<Ellipse Grid.Row="0" WidthRequest="12" HeightRequest="12" Fill="#2196F3" HorizontalOptions="Center" />
-					<BoxView Grid.Row="1" WidthRequest="2" Color="#D1D1D1" HorizontalOptions="Center" VerticalOptions="Fill" />
-				</Grid>
+                            <Grid ColumnDefinitions="Auto, *" RowDefinitions="Auto, Auto">
+                                <BoxView Grid.RowSpan="2" Grid.Column="0" WidthRequest="4" BackgroundColor="{StaticResource Secondary}" CornerRadius="2" Margin="0,0,15,0" />
+                                
+                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding VehiculoId, StringFormat='Vehículo ID: {0}'}" FontSize="16" FontAttributes="Bold" TextColor="{StaticResource PrimaryDark}" />
+                                
+                                <VerticalStackLayout Grid.Row="1" Grid.Column="1" Spacing="5" Margin="0,5,0,0">
+                                    <Label Text="{Binding ServicioId, StringFormat='Servicio: {0}'}" FontSize="14" TextColor="{StaticResource Tertiary}" />
+                                    <Label Text="{Binding Costo, StringFormat='Costo: ${0:F2}'}" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource Primary}" />
+                                    <Label Text="{Binding Fecha, StringFormat='Fecha: {0:dd/MM/yyyy}'}" FontSize="12" TextColor="{StaticResource Tertiary}" />
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.EmptyView>
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10" Margin="0,50,0,0">
+                        <Label Text="No hay mantenimientos registrados." FontSize="16" TextColor="{StaticResource Tertiary}" HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+                </CollectionView.EmptyView>
+            </CollectionView>
+        </RefreshView>
+    </Grid>
 
-				<VerticalStackLayout Grid.Column="1" Spacing="2" Margin="0,0,0,20">
-					<Label Text="02 FEB 2022" FontSize="12" FontAttributes="Bold" TextColor="#757575" />
-					<Label Text="Revisión de Frenos" FontSize="17" TextColor="#212121" FontAttributes="Bold" />
-					<Label Text="$1,200.00" FontSize="15" TextColor="#2E7D32" FontAttributes="Bold" />
-				</VerticalStackLayout>
-			</Grid>
-
-			<Grid ColumnDefinitions="Auto, *" ColumnSpacing="15" Padding="0,10">
-				<!-- Entrada sin línea extendida: sólo un Grid con fila Auto -->
-				<Grid Grid.Column="0" HorizontalOptions="Center" RowDefinitions="Auto">
-					<Ellipse Grid.Row="0" WidthRequest="12" HeightRequest="12" Fill="#2196F3" HorizontalOptions="Center" />
-				</Grid>
-
-				<VerticalStackLayout Grid.Column="1" Spacing="2">
-					<Label Text="15 NOV 2021" FontSize="12" FontAttributes="Bold" TextColor="#757575" />
-					<Label Text="Alineación y Balanceo" FontSize="17" TextColor="#212121" FontAttributes="Bold" />
-					<Label Text="$800.00" FontSize="15" TextColor="#2E7D32" FontAttributes="Bold" />
-				</VerticalStackLayout>
-			</Grid>
-
-		</VerticalStackLayout>
-	</ScrollView>
 </ContentPage>

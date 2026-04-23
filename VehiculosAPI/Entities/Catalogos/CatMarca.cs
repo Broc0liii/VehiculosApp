@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+using System.Globalization;
 using System.Security;
 
 namespace VehiculosAPI.Entities.Catalogos
@@ -6,8 +6,8 @@ namespace VehiculosAPI.Entities.Catalogos
     public class CatMarca
     {
        public int Id { get; set; }
-       public string marca { get; set; }
+       public string Marca { get; set; } = string.Empty;
 
-        public ICollection<Vehiculo> Vehiculos { get; set; }
+        public ICollection<Vehiculo> Vehiculos { get; set; } = new List<Vehiculo>();
 	}
 }

@@ -1,9 +1,23 @@
-namespace VehiculosMaui.Views;
+using Microsoft.Maui.Controls;
+using VehiculosMaui.ViewModels;
 
-public partial class ListaVehiculosPage : ContentPage
+namespace VehiculosMaui.Views
 {
-	public ListaVehiculosPage()
-	{
-		InitializeComponent();
-	}
+    public partial class ListaVehiculosPage : ContentPage
+    {
+        public ListaVehiculosPage(ListaVehiculosViewModel viewModel)
+        {
+            InitializeComponent();
+            BindingContext = viewModel;
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            if (BindingContext is ListaVehiculosViewModel vm)
+            {
+                vm.LoadVehiculosCommand.Execute(null);
+            }
+        }
+    }
 }
